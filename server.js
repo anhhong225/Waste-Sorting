@@ -1,27 +1,36 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const userRoutes = require('./routes/userRoutes');
-const wasteCategoryRoutes = require('./routes/wasteCategoryRoutes');
-const wasteItemRoutes = require('./routes/wasteItemRoutes');
-const challengeRoutes = require('./routes/challengeRoutes');
-const errorMiddleware = require('./middlewares/errorMiddleware');
 require('dotenv').config();
+const express = require('express');
+const connectDB = require('./config/connectDB');
+const userRoutes = require('./routes/userRoute');
+const wasteCategoryRoutes = require('./routes/wasteCategorieRoute');
+const wasteItemRoutes = require('./routes/wasteItemRoute');
+const challengeRoutes = require('./routes/chalengeRoute');
+const errorMiddleware = require('./middleware/errorMiddleware');
+const logger = require('./middleware/logger');
 
-const PORT = process.env.PORT || 3000;
 const app = express();
+const PORT = process.env.PORT || 3000;
 
+// Connect to MongoDB
+connectDB();
+
+// Middleware to parse JSON
 app.use(express.json());
 
-// Route setup
-app.use('/api/users', userRoutes);
-app.use('/api/waste-categories', wasteCategoryRoutes);
-app.use('/api/waste-items', wasteItemRoutes);
-app.use('/api/challenges', challengeRoutes);
+app.use(express.static('views'));
+// Request logging middleware
+// app.use(logger);
+
+// // Route setup
+// app.use('/api/users', userRoutes);
+// app.use('/api/waste-categories', wasteCategoryRoutes);
+// app.use('/api/waste-items', wasteItemRoutes);
+// app.use('/api/challenges', challengeRoutes);
 
 // Error handling middleware
-app.use(errorMiddleware);
+// app.use(errorMiddleware);
 
-app.listen(PORT, () =>{
-    console.log("Server is running on port 3000");
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
