@@ -1,12 +1,12 @@
 require('dotenv').config();
 const express = require('express');
-const connectDB = require('./config/connectDB');
-const userRoutes = require('./routes/userRoute');
-const wasteCategoryRoutes = require('./routes/wasteCategorieRoute');
-const wasteItemRoutes = require('./routes/wasteItemRoute');
-const challengeRoutes = require('./routes/chalengeRoute');
-const errorMiddleware = require('./middleware/errorMiddleware');
-const logger = require('./middleware/logger');
+const connectDB = require('./api/config/connectDB');
+const userRoutes = require('./api/routes/userRoute');
+const wasteCategoryRoutes = require('./api/routes/wasteCategorieRoute');
+const wasteItemRoutes = require('./api/routes/wasteItemRoute');
+const challengeRoutes = require('./api/routes/chalengeRoute');
+const errorMiddleware = require('./api/middleware/errorMiddleware');
+const logger = require('./api/middleware/logger');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
