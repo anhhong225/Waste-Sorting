@@ -3,12 +3,12 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
-global.User = require('./user_api/models/user');
-global.Challenge = require('./user_api/models/challenge');
+global.User = require('./models/user');
+global.Challenge = require('./models/challenge');
 
 // Routes
-const userRoutes = require('./user_api/routes/userRoute');
-const challengeRoutes = require('./user_api/routes/challengeRoute');
+const userRoutes = require('./routes/userRoute');
+const challengeRoutes = require('./routes/challengeRoute');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });

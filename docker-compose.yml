@@ -20,7 +20,7 @@ services:
     environment:
       - PORT=3002
       - WASTE_API_PORT=3002
-      - WASTE_DB_URI=mongodb://mongo_waste_db:27017/waste_db
+      - WASTE_DB_URI=mongodb+srv://heoshan:Gemini2205@waste-sorting.iibpb.mongodb.net/?retryWrites=true&w=majority&appName=Waste-Sorting
     ports:
       - "3002:3002"
     depends_on:
