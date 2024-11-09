@@ -1,0 +1,43 @@
+version: '3'
+services:
+  user_api:
+    build:
+      context: ./user_api
+      dockerfile: ../Dockerfile
+    environment:
+      - PORT=3001
+      - USER_API_PORT=3001
+      - USER_DB_URI=mongodb+srv://heoshan:Gemini2205@waste-sorting.iibpb.mongodb.net/?retryWrites=true&w=majority&appName=Waste-Sorting
+    ports:
+      - "3001:3001"
+    depends_on:
+      - mongo_user_db
+
+  waste_api:
+    build:
+      context: ./waste_api
+      dockerfile: ../Dockerfile
+    environment:
+      - PORT=3002
+      - WASTE_API_PORT=3002
+      - WASTE_DB_URI=mongodb://mongo_waste_db:27017/waste_db
+    ports:
+      - "3002:3002"
+    depends_on:
+      - mongo_waste_db
+
+  mongo_user_db:
+    image: mongo
+    container_name: mongo_user_db
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: user_db
+
+  mongo_waste_db:
+    image: mongo
+    container_name: mongo_waste_db
+    ports:
+      - "27018:27017"
+    environment:
+      MONGO_INITDB_DATABASE: waste_db
