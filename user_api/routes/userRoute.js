@@ -11,4 +11,7 @@ module.exports = app => {
         .get(userController.getUserById) // Get a user by ID
         .put(userController.updateUser) // Update a user by ID
         .delete(userController.deleteUser); // Delete a user by ID
+
+    app.post('/register', userController.createUser);
+    app.post('/login', userController.login);
 };

@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
@@ -12,13 +14,6 @@ const challengeRoutes = require('./routes/challengeRoute');
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb+srv://heoshan:Gemini2205@waste-sorting.iibpb.mongodb.net/?retryWrites=true&w=majority&appName=Waste-Sorting');
-
-
-// const errorMiddleware = require('./api/middleware/errorMiddleware');
-// const logger = require('./api/middleware/logger');
-
-// Connect to MongoDB
-// connectDB();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
