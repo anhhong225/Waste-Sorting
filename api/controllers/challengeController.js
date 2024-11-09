@@ -7,7 +7,7 @@ exports.getChallenges = (req, res) => {
   });
 };
 
-exports.getChallengeById = (req, res) => {
+exports.getAChallenge = (req, res) => {
   challenge.findById(req.params.challengeId, (err, challenge) => {
     if (err) res.status(500).send(err);
     res.status(200).json(challenge);
@@ -20,7 +20,6 @@ exports.updateChallenge = (req,res) => {
         res.status(200).send(challenge)
     })
 }
-
 
 exports.deleteChallenge = (req, res) => {
     Challenge.findByIdAndDelete(req.params.challengeId, (err) => {
