@@ -1,12 +1,7 @@
 const mongoose = require('mongoose');
 
-const  userSchema = new mongoose.Schema(
+const userSchema = new mongoose.Schema(
 {
-    username: {
-        type: String,
-        trim: true,
-        required: "Username cannot be blank"
-    },
     email: {
         type: String,
         unique: true,

@@ -3,21 +3,15 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
-global.wasteCategory = require('./waste_api/models/wasteCategory');
-global.wasteItem = require('./waste_api/models/wasteItem');
+global.wasteCategory = require('./models/wasteCategory');
+global.wasteItem = require('./models/wasteItem');
 
 // Routes
-const wasteCategoryRoutes = require('./waste_api/routes/wasteCategorieRoute');
-const wasteItemRoutes = require('./waste_api/routes/wasteItemRoute');
+const wasteCategoryRoutes = require('./routes/wasteCategorieRoute');
+const wasteItemRoutes = require('./routes/wasteItemRoute');
 
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
-
-// const errorMiddleware = require('./api/middleware/errorMiddleware');
-// const logger = require('./api/middleware/logger');
-
-// Connect to MongoDB
-// connectDB();
+mongoose.connect('mongodb+srv://heoshan:Gemini2205@waste-sorting.iibpb.mongodb.net/?retryWrites=true&w=majority&appName=Waste-Sorting');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
