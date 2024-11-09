@@ -11,7 +11,7 @@ const userRoutes = require('./routes/userRoute');
 const challengeRoutes = require('./routes/challengeRoute');
 
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://heoshan:Gemini2205@waste-sorting.iibpb.mongodb.net/?retryWrites=true&w=majority&appName=Waste-Sorting');
 
 
 // const errorMiddleware = require('./api/middleware/errorMiddleware');
