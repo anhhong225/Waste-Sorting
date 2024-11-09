@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
 const ChallengeService = require('../services/challengeService');
-=======
-const ChallengeService = require('./services/challengeService');
->>>>>>> Stashed changes
 
 // Get waste items for sorting challenge
 exports.getWasteItems = async (req, res) => {
