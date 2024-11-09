@@ -1,5 +1,5 @@
-const WasteItem = require('../models/wasteItem');
-const WasteCategory = require('../models/wasteCategory');
+const WasteItem = require('../waste_api/models/wasteItem');
+const WasteCategory = require('../waste_api/models/wasteCategory');
 const User = require('../models/user');
 
 class ChallengeService {
