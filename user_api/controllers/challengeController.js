@@ -1,29 +1,23 @@
-const challenge = require("../models/challenge");
+const ChallengeService = require('./services/ChallengeService');
 
-exports.getChallenges = (req, res) => {
-  challenge.find({}, (err, challenges) => {
-    if (err) res.status(500).send(err);
-    res.status(200).json(challenges);
-  });
+// Get waste items for sorting challenge
+exports.getWasteItems = async (req, res) => {
+    try {
+        const items = await ChallengeService.getWasteItemsForChallenge();
+        res.json({ items });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 };
 
-exports.getAChallenge = (req, res) => {
-  challenge.findById(req.params.challengeId, (err, challenge) => {
-    if (err) res.status(500).send(err);
-    res.status(200).json(challenge);
-  });
-};
+// Submit answer and update score
+exports.submitAnswer = async (req, res) => {
+    const { userId, itemId, categoryId } = req.body;
 
-exports.updateChallenge = (req,res) => {
-    challenge.findByIdAndUpdate(req.params.challengeId, req.body, {new: true}, (err, challenge) => {
-        if(err) res.status(500).send(err);
-        res.status(200).send(challenge)
-    })
-}
-
-exports.deleteChallenge = (req, res) => {
-    Challenge.findByIdAndDelete(req.params.challengeId, (err) => {
-        if (err) res.status(500).send(err);
-        res.status(200).json({ message: 'Challenge successfully deleted' });
-    });
+    try {
+        const result = await ChallengeService.submitAnswer(userId, itemId, categoryId);
+        res.json(result);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 };

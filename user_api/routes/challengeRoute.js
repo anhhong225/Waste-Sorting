@@ -1,13 +1,11 @@
 const challengeController = require("../controllers/challengeController");
 
-module.exports = app => {
+module.exports = (app) => {
     app
-        .route('/challenges') 
-        .get(challengeController.getChallenges) 
-        // .post(challengeController.createChallenge); 
+        .route('/getWasteItems')
+        .get(challengeController.getWasteItems);
+    
     app
-        .route('/challenge/:challengeId')
-        .get(challengeController.getAChallenge) 
-        .put(challengeController.updateChallenge) 
-        .delete(challengeController.deleteChallenge); 
+        .route('/submitAnswer')
+        .post(challengeController.submitAnswer);
 };
