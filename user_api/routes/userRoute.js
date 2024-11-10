@@ -3,8 +3,7 @@ const userController = require("../controllers/userController");
 module.exports = app => {
     app
         .route('/users') // Endpoint: /users, Methods: GET, POST
-        .get(userController.getUsers) // Get all users
-        .post(userController.createUser); // Create a new user
+        .get(userController.getUsers); // Get all users
 
     app
         .route('/users/:userId') // Endpoint: /users/:userId, Methods: GET, PUT, DELETE
