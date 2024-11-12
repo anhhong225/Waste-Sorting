@@ -1,11 +1,13 @@
 const challengeController = require("../controllers/challengeController");
+const userAuthenticate = require("../middleware/userMiddleware");
 
 module.exports = (app) => {
     app
         .route('/getWasteItems')
-        .get(challengeController.getWasteItems);
-    
+        .get(userAuthenticate, challengeController.getWasteItems);
+
     app
         .route('/submitAnswer')
-        .post(challengeController.submitAnswer);
+        .post(userAuthenticate, challengeController.submitAnswer);
 };
+

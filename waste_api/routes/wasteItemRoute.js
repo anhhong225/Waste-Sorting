@@ -2,13 +2,15 @@ const wasteItemController = require("../controllers/wasteItemController");
 
 module.exports = app => {
     app
-        .route('/waste-item') 
+        .route('/waste-item')
         .get(wasteItemController.getItems)
-        .post(wasteItemController.createItem); 
+        .post(wasteItemController.createItem);
 
     app
-        .route('/waste-item/:itemId') 
+        .route('/waste-item/:itemId')
         .get(wasteItemController.getAItem)
-        .put(wasteItemController.updateItem) 
+        .put(wasteItemController.updateItem)
         .delete(wasteItemController.deleteItem);
 };
+
+
