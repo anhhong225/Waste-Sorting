@@ -26,8 +26,8 @@ userRoutes(app);
 challengeRoutes(app);
 
 // Start the server
-app.use((req,res) => {
-    req.statusCode(404).send({url: `${req.originalUrl} not found`});
+app.use((req, res) => {
+  res.status(404).send({url: `${req.originalUrl} not found`});
 });
 
 app.listen(PORT, () => {
