@@ -1,4 +1,4 @@
-const ChallengeService = require('../services/challengeService');
+// const ChallengeService = require('../services/challengeService');
 
 // Get waste items for sorting challenge
 exports.getWasteItems = async (req, res) => {

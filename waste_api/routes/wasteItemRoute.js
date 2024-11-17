@@ -1,5 +1,5 @@
 const wasteItemController = require("../controllers/wasteItemController");
-// const verifyAut = require("../../user_api/middleware/authMiddleware");
+//const verifyAut = require("../../user_api/middleware/authMiddleware");
 
 module.exports = app => {
     app
