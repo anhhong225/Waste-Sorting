@@ -1,16 +1,16 @@
 const wasteItemController = require("../controllers/wasteItemController");
+// const verifyAut = require("../../user_api/middleware/authMiddleware");
 
 module.exports = app => {
     app
-        .route('/waste-item')
-        .get(wasteItemController.getItems)
-        .post(wasteItemController.createItem);
+        .route('/waste-item') 
+        .get(/*verifyAut,*/ wasteItemController.getItems)
+        .post(/*verifyAut,*/ wasteItemController.createItem); 
 
     app
-        .route('/waste-item/:itemId')
-        .get(wasteItemController.getAItem)
-        .put(wasteItemController.updateItem)
-        .delete(wasteItemController.deleteItem);
+        .route('/waste-item/:itemId') 
+        .get(/*verifyAut,*/ wasteItemController.getAItem)
+        .put(/*verifyAut,*/ wasteItemController.updateItem) 
+        .delete(/*verifyAut,*/ wasteItemController.deleteItem);
 };
-
 

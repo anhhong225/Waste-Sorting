@@ -7,7 +7,7 @@ global.wasteCategory = require('./models/wasteCategory');
 global.wasteItem = require('./models/wasteItem');
 
 // Routes
-const wasteCategoryRoutes = require('./routes/wasteCategorieRoute');
+const wasteCategoryRoutes = require('./routes/wasteCategoryRoute');
 const wasteItemRoutes = require('./routes/wasteItemRoute');
 
 mongoose.Promise = global.Promise;
