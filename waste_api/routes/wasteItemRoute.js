@@ -13,3 +13,4 @@ module.exports = app => {
         .put(/*verifyAut,*/ wasteItemController.updateItem) 
         .delete(/*verifyAut,*/ wasteItemController.deleteItem);
 };
+
