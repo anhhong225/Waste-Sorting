@@ -11,7 +11,7 @@ const wasteCategoryRoutes = require('./routes/wasteCategoryRoute');
 const wasteItemRoutes = require('./routes/wasteItemRoute');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb+srv://volinhdatabase:JAGp6QUa0JCOLzCK@cluster0mongodb.4sbx9.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0MongoDB');
+mongoose.connect('mongodb+srv://heoshan:Gemini2205@waste-sorting.iibpb.mongodb.net/?retryWrites=true&w=majority&appName=Waste-Sorting');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -25,7 +25,7 @@ wasteItemRoutes(app);
 
 // Start the server
 app.use((req, res) => {
-  req.statusCode(404).send({ url: `${req.originalUrl} not found` });
+  res.status(404).send({url: `${req.originalUrl} not found`});
 });
 
 app.listen(PORT, () => {
