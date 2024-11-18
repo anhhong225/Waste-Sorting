@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
 global.User = require('./models/user');
-global.Challenge = require('./models/challenge');
+global.Challenge = require('./models/challengeModel');
 
 // Routes
 const userRoutes = require('./routes/userRoute');
