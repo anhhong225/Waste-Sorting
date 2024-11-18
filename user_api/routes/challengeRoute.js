@@ -1,30 +1,14 @@
-// const challengeController = require("../controllers/challengeController");
-// const userAuthenticate = require("../middleware/userMiddleware");
-
-// module.exports = (app) => {
-//     app
-//         .route('/getWasteItems')
-//         .get(userAuthenticate, challengeController.getWasteItems);
-
-//     app
-//         .route('/submitAnswer')
-//         .post(userAuthenticate, challengeController.submitAnswer);
-
-//     app
-//         .route('/getWasteItems')// get random item
-//         .get(userAuthenticate, challengeController.getWasteItems);
-// };
-
-// routes/wasteRoutes.js
-// const express = require('express');
 const challengeController = require('../controllers/challengeController');
 
-module.exports = app => {
+module.exports = (app) => {
     app
-        .route('/random-item')
-        .get(challengeController.getRandomWasteItems);
+        .route('/challenges')
+        .get(challengeController.getAllChallenges) // Fetch all challenges
+        .post(challengeController.createChallenge); // Create a new challenge
 
     app
-        .route('/check-answer')
-        .post(challengeController.checkAnswer);
+        .route('/challenges/:id')
+        .get(challengeController.getChallengeById) // Fetch a specific challenge by ID
+        .put(challengeController.updateChallenge) // Update a challenge by ID
+        .delete(challengeController.deleteChallenge); // Delete a challenge by ID
 };

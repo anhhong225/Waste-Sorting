@@ -10,7 +10,7 @@ global.Challenge = require('./models/challengeModel');
 
 // Routes
 const userRoutes = require('./routes/userRoute');
-// const challengeRoutes = require('./routes/challengeRoute');
+const challengeRoutes = require('./routes/challengeRoute');
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb+srv://heoshan:Gemini2205@waste-sorting.iibpb.mongodb.net/?retryWrites=true&w=majority&appName=Waste-Sorting');
@@ -23,11 +23,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 userRoutes(app);
-// challengeRoutes(app);
+challengeRoutes(app);
+
+
 
 // Start the server
 app.use((req, res) => {
-  res.status(404).send({url: `${req.originalUrl} not found`});
+  res.status(404).send({ url: `${req.originalUrl} not found` });
 });
 
 app.listen(PORT, () => {
