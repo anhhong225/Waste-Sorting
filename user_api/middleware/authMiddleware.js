@@ -3,18 +3,19 @@ const User = require('../models/user');
 const SECRET_KEY = process.env.SECRET_KEY
 
 const userAuthenticate = (req, res, next) => {
-  try {
-    // Check for the token in the authorization header
-    const authHeader = req.headers.authorization;
-    if (!authHeader) {
-      return res.status(403).json({ message: 'No token provided.' });
-    }
 
-    // Token format: "Bearer <token>"
-    const token = authHeader.split(' ')[1];
-    if (!token) {
-      return res.status(403).json({ message: 'Invalid token format.' });
-    }
+  const token = req.headers["authorization"];
+
+  if (!token) {
+    return res.status(403).json({ message: "No token provided." });
+  }
+
+  const tokenWithoutBearer = token.split(" ")[1];
+
+  jwt.verify(tokenWithoutBearer, SECRET_KEY, (err, decoded) => {
+    if (err) {
+      return res.status(401).json({ message: "Failed to authenticate token." });
+  }
 
     // Verify the token
     const decoded = jwt.verify(token, SECRET_KEY);
