@@ -1,16 +1,20 @@
 const mongoose = require('mongoose');
 
 const wasteCategorieSchema = new mongoose.Schema({
-    item: {
+    name: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true
+    },
+    description: {
         type: String,
         required: true,
     },
-    category: {
+    disposalGuidelines: {
         type: String,
-        enum: ['Plastic', 'Organic', 'Metal', 'Glass'], // Example difficulty levels
         required: true,
-    },
-}, { timestamps: true });
+    }
+}, {timestamps: true});
 
 module.exports = mongoose.model('WasteCategory', wasteCategorieSchema);
-
