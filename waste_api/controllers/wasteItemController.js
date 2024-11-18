@@ -27,17 +27,21 @@ exports.getAItem = async (req, res, next) => {
 // Create a new waste item
 exports.createItem = async (req, res) => {
   try {
-    // Get the category name from the request body
-    const { category, name } = req.body;
-    // Find the category by its name (you can adjust based on how the category is passed)
-    const wasteCategory = await WasteCategory.findOne({ name: category.toLowerCase() });
+    const { category, name, sortingInstructions } = req.body;
+
+    // Check if category exists (case-insensitive)
+    const wasteCategory = await WasteCategory.findOne({ 
+      name: { $regex: new RegExp(`^${category}$`, "i") } 
+    });
     if (!wasteCategory) {
-      return res.status(404).json({ message: "Waste category not found" });
+      return res.status(404).json({ message: `Category '${category}' not found` });
     }
-    // Create a new WasteItem and set the category to the ObjectId of the found category
+
+    // Create and save the new waste item
     const newWasteItem = new WasteItem({
       name,
-      category: wasteCategory._id, 
+      category: wasteCategory._id,
+      sortingInstructions, // Include sorting instructions
     });
     const savedItem = await newWasteItem.save();
     res.status(201).json(savedItem);
