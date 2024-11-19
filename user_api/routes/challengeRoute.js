@@ -1,14 +1,12 @@
-const challengeController = require('../controllers/challengeController');
+const challengeController = require("../controllers/challengeController");
 
-module.exports = (app) => {
-    app
-        .route('/challenges')
-        .get(challengeController.getAllChallenges) // Fetch all challenges
-        .post(challengeController.createChallenge); // Create a new challenge
+module.exports = app => {
+  app.route("/challenges")
+    .get(challengeController.getChallenges)
+    .post(challengeController.createChallenge);
 
-    app
-        .route('/challenges/:id')
-        .get(challengeController.getChallengeById) // Fetch a specific challenge by ID
-        .put(challengeController.updateChallenge) // Update a challenge by ID
-        .delete(challengeController.deleteChallenge); // Delete a challenge by ID
+  app.route("/challenges/:challengeId")
+    .get(challengeController.getChallengeById)
+    .put(challengeController.updateChallenge)
+    .delete(challengeController.deleteChallenge);
 };
