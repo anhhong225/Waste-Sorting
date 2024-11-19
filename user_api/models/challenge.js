@@ -1,33 +1,20 @@
-// models/Challenge.js
+const mongoose = require("mongoose");
 
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const challengeSchema = new mongoose.Schema({
+  description: {
+    type: String,
+    required: true,
+  },
+  difficultyLevel: {
+    type: String,
+    required: true,
+    enum: ["easy", "medium", "hard"],  // Adjust based on your difficulty levels
+  },
+  wasteItems: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "WasteItem",
+    required: true,
+  }],
+}, { timestamps: true });
 
-// Định nghĩa schema cho Challenge
-const challengeSchema = new Schema(
-    {
-        description: {
-            type: String,
-            required: true,
-            trim: true,
-        },
-        difficultyLevel: {
-            type: String,
-            enum: ['Easy', 'Medium', 'Hard'], // Các mức độ khó có thể là Easy, Medium, hoặc Hard
-            required: true,
-        },
-        scoringCriteria: {
-            type: String,
-            required: true,
-            trim: true,
-        },
-        createdAt: {
-            type: Date,
-            default: Date.now, // Lưu ngày tạo thử thách
-        },
-    },
-    { timestamps: true } // Tự động thêm các trường createdAt và updatedAt
-);
-
-
-module.exports = mongoose.model('Challenge', challengeSchema);
+module.exports = mongoose.model("Challenge", challengeSchema);

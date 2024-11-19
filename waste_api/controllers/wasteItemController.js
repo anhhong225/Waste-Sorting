@@ -1,10 +1,24 @@
 const WasteItem = require("../models/wasteItem");
 const WasteCategory = require("../models/wasteCategory");
 
-// Get all waste items
 exports.getItems = async (req, res, next) => {
   try {
-    const wasteItems = await WasteItem.find({});
+    const { ids } = req.query; // Extract optional 'ids' query parameter
+
+    let wasteItems;
+    if (ids) {
+      // If 'ids' parameter is provided, fetch specific waste items
+      const idArray = ids.split(','); // Split comma-separated IDs into an array
+      wasteItems = await WasteItem.find({ _id: { $in: idArray } });
+
+      if (wasteItems.length !== idArray.length) {
+        return res.status(404).json({ message: "Some waste items not found" });
+      }
+    } else {
+      // If no 'ids' parameter, fetch all waste items
+      wasteItems = await WasteItem.find({});
+    }
+
     res.json(wasteItems);
   } catch (err) {
     next(err); // Pass error to Express error handler

@@ -10,8 +10,10 @@ services:
     environment:
       - PORT=${USER_API_PORT}
       - DB_URI=${USER_DB_URI}
+      - WASTE_API_URL=http://waste_api:3002  # Add an environment variable for waste_api URL
     depends_on:
       - mongodb
+      - waste_api  # Ensure waste_api starts before user_api
 
   waste_api:
     build:
@@ -32,4 +34,3 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: admin
-
