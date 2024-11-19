@@ -32,12 +32,10 @@ exports.createChallenge = async (req, res) => {
   try {
     const { description, difficultyLevel, wasteItemIds } = req.body;
 
-    // Fetch waste items from waste_api
-    const response = await fetch(`${wasteApiUrl}/wasteItems`, {
-      method: 'POST',  // Assuming POST method for bulk fetch of waste items
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ids: wasteItemIds }),  // Send waste item IDs to waste_api
-    });
+    // Fetch waste items from waste_api with query parameters
+    const response = await fetch(
+      `${wasteApiUrl}/waste-item?ids=${wasteItemIds.join(',')}`
+    );
 
     if (!response.ok) {
       return res.status(response.status).json({ message: "Error fetching waste items" });
@@ -52,7 +50,7 @@ exports.createChallenge = async (req, res) => {
     const newChallenge = new Challenge({
       description,
       difficultyLevel,
-      wasteItems: wasteItems.map(item => item._id),  // Associate waste items by their IDs
+      wasteItems: wasteItems.map(item => item._id), // Associate waste items by their IDs
     });
 
     const savedChallenge = await newChallenge.save();
@@ -61,6 +59,7 @@ exports.createChallenge = async (req, res) => {
     res.status(500).json({ message: "Error creating challenge", error: err.message });
   }
 };
+
 
 // Update a challenge
 exports.updateChallenge = async (req, res) => {
